@@ -1,5 +1,6 @@
 import {API} from '../../Backend';
 
+//logic for signup
 export const signup = (user) => {
   return fetch(`${API}/signup` , {
         method:'POST',
@@ -15,6 +16,7 @@ export const signup = (user) => {
     .catch(err => console.log(err))
 }
 
+//logic for signin
 export const signin = (user) => {
     return fetch(`${API}/signin` , {
           method:'POST',
@@ -30,6 +32,8 @@ export const signin = (user) => {
       .catch(err => console.log(err))
   }
 
+
+ //create token
 export const authinticate = (data , next) =>{
     if(typeof window !== "undefined"){
         localStorage.setItem("jwt" , JSON.stringify(data));
@@ -37,8 +41,8 @@ export const authinticate = (data , next) =>{
     }
 }
 
-
-
+ 
+//logic for signout(clearing token from browser)
 export const signout = (next) => {
     if(localStorage.getItem('jwt')){
     localStorage.removeItem('jwt');
@@ -52,6 +56,7 @@ export const signout = (next) => {
 }
 };
 
+//check for token(i.e. user is signed in or not)
 export const isAuthinticated = () => {
     if(typeof window ==  "undefined"){
         return false;

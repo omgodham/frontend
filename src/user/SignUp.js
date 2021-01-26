@@ -1,7 +1,50 @@
-import React from 'react'
+import React,{useState} from 'react'
+import { signup } from '../auth/helper';
 import Base from '../core/Base';
 
 export default function SignUp() {
+
+const [values,setValues] = useState({
+    name:'',
+    email:'',
+    password:'',
+    error:false,
+    success:false
+});
+
+const {name,email,password,error,success} = values;
+
+
+const handleChange = (name) = (event) => {
+setValues({error:false,success:false,[name]:event.target.value});
+}
+
+
+const onSubmit = event => {
+    event.preventDefault();
+    signup({name,email,password})
+    .then(data => {
+      if(data.error){
+        setValues({
+            ...values,
+            error:data.error,
+            success:false
+        })    
+      }
+      else{
+        setValues({
+            name:'',
+            email:'',
+            password:'',
+             error:false,
+             success:true
+         })
+      }
+    })
+    .catch(
+      console.log("error in signup")        
+    )
+}
 
  const signUpForm = () => {
      return <div className='row'>
@@ -9,17 +52,17 @@ export default function SignUp() {
                 <form>
                 <div className="form-group">
                     <label>Name</label>
-                    <input type="text" className="form-control"/>
+                    <input type="text" className="form-control" value={name} onChange={handleChange('name')}/>
                 </div>
                 <div className="form-group">
                     <label>Email</label>
-                    <input type="email" className="form-control"/>
+                    <input type="email" className="form-control" value={email} onChange={handleChange('email')}/>
                 </div>
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control"/>
+                    <input type="password" className="form-control" value={password} onChange={handleChange('password')}/>
                 </div>
-                <button className='btn bg-success btn-block text-white'>Submit</button>
+                <button className='btn bg-success btn-block text-white' onClick={onSubmit} >Submit</button>
                 </form>
             </div>
      </div>     
