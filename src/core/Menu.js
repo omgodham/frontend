@@ -1,5 +1,6 @@
-import React from 'react';
-import {Link,withRouter} from 'react-router-dom';
+import React,{Fragment} from 'react';
+import {Link,Redirect,withRouter} from 'react-router-dom';
+import {isAuthinticated, signout} from '../auth/helper/index';
 
 const currentTab = ( history, path ) => {
     // console.log(history);
@@ -19,18 +20,29 @@ const Menu = ({history}) => {
             <li className='nav-item'>
                 <Link style={currentTab(history, "/")}  className='nav-link'  to="/">Home</Link>
             </li>
+            
             <li className='nav-item'>
                 <Link style={currentTab(history,"/dashboard")} className='nav-link'  to='/dashboard'>Dashboard</Link>
             </li>
+            {!isAuthinticated() && <Fragment> {/* if the user is not signed in then only show it*/ }
+                {/*Fragment is just a component to hold multiple thigs together without affecting their forms (whether if we wrote div over here whole things will scrwed up)*/}
             <li className='nav-item'>
                 <Link style={currentTab(history,"/signup")} className='nav-link' to='/signup'>Signup</Link>
             </li>
             <li className='nav-item'>
                 <Link style={currentTab(history,"/signin")} className='nav-link' to='/signin'>Signin</Link>
             </li>
+            </Fragment>}
+            {isAuthinticated() && (  //if the user signed in then only show and after clicking redirect to home screen
             <li className='nav-item'>
-                <Link style={currentTab(history,"/signout")}className='nav-link' to='/signout'>Signout</Link>
-            </li>
+                <span className='nav-link text-warning'
+                 onClick={()=>{
+                     signout(()=> {
+                        history.push('/');
+                    })
+                }}>SignOut</span>
+                 </li>)}
+           
         </ul>
         </div>
     )
