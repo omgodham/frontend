@@ -20,10 +20,19 @@ const Menu = ({history}) => {
             <li className='nav-item'>
                 <Link style={currentTab(history, "/")}  className='nav-link'  to="/">Home</Link>
             </li>
-            
-            <li className='nav-item'>
-                <Link style={currentTab(history,"/dashboard")} className='nav-link'  to='/dashboard'>Dashboard</Link>
+            {isAuthinticated() && isAuthinticated().user.role === 0 && (
+                <li className='nav-item'>
+                <Link style={currentTab(history,"/dashboard")} className='nav-link'  to='/user/dashboard'>U. Dashboard</Link>
             </li>
+            )}
+
+            {isAuthinticated() && isAuthinticated().user.role === 1 && (
+                <li className='nav-item'>
+                <Link style={currentTab(history,"/dashboard")} className='nav-link'  to='/admin/dashboard'>A. Dashboard</Link>
+            </li>
+            )}
+            
+
             {!isAuthinticated() && <Fragment> {/* if the user is not signed in then only show it*/ }
                 {/*Fragment is just a component to hold multiple thigs together without affecting their forms (whether if we wrote div over here whole things will scrwed up)*/}
             <li className='nav-item'>

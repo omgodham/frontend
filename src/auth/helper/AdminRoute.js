@@ -1,10 +1,10 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect ,Route } from 'react-router-dom';
 import { isAuthinticated } from '.';
 
 export default function AdminRoute({component: Component , ...rest}) {
     return (
-        <Route>
+        <Route
             {...rest}
               render = {props => 
                isAuthinticated() && isAuthinticated().user.role === 1 ? (
@@ -15,6 +15,6 @@ export default function AdminRoute({component: Component , ...rest}) {
                      state:{from: props.location}
                  }}
                  />)}
-        </Route>
+        />
     )
 }

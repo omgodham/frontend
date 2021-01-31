@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Base from "../core/Base";
 import { Redirect } from "react-router-dom";
 import { signin, authinticate, isAuthinticated } from "../auth/helper/index";
-
+import UserDashBoard from './UserDashBoard';
+import AdminDashBoard from './AdminDashBoard';
 export default function SignIn() {
     
   const [values, setValues] = useState({
@@ -68,9 +69,9 @@ export default function SignIn() {
     {
         console.log(user);
    if(user && user.role === 1 )
-       return <p>Admin dashboard</p>
+       return <Redirect to='/admin/dashboard'/>
    else 
-       return <p>User dashboard</p>
+       return <Redirect to='/user/dashboard'/>
    }
    if(isAuthinticated()){ 
      return <Redirect to='/'/>
