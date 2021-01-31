@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {Link} from 'react-router-dom';
 import { isAuthinticated } from '../auth/helper';
 import Base from '../core/Base';
-import {createCategory} from './index';
+import {createCategory} from './helper/adminapicalls';
 export default function CreateCategory() {
 
     const [name,setName] = useState("");
@@ -10,6 +10,17 @@ export default function CreateCategory() {
     const [success,setSuccess] = useState(false);
     const {user,token} = isAuthinticated();
 
+
+    const createCategoryForm = () => {
+        return <form className='p-3'>
+        <div className='form-group col-9'>
+           <label>Enter Name</label>
+            <input className='form-control' value={name} onChange={handleChange}/>
+        </div>    
+        <button className='btn btn-sm bg-success text-white' onClick={onSubmit}>Add Category</button><br />
+        <Link to='/admin/dashboard' className='btn btn-sm bg-warning text-white mt-3'>Admin Dashboard</Link>
+    </form>
+    }
     const handleChange = (event) =>{
             setName(event.target.value);
     }
@@ -37,14 +48,7 @@ const successMessage = () => {
         <Base title='Create Category Here' description='you can create your category here' className='container bg-info'>
        {errorMessage()}
        {successMessage()}
-        <form className='p-3'>
-            <div className='form-group col-9'>
-               <label>Enter Name</label>
-                <input className='form-control' value={name} onChange={handleChange}/>
-            </div>    
-            <button className='btn btn-sm bg-success text-white' onClick={onSubmit}>Add Category</button><br />
-            <Link to='/admin/dashboard' className='btn btn-sm bg-warning text-white mt-3'>Admin Dashboard</Link>
-        </form>
+        {createCategoryForm()}
         </Base>
     )
 }
