@@ -42,7 +42,6 @@ export default function AdminDashBoard() {
                     <span className='badge bg-danger mr-2' >Admin Area</span>
                     </li>
                 </ul>
-               
             </div>
             )
     }

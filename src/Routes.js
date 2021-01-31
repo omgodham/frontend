@@ -8,6 +8,7 @@ import UserDashBoard from './user/UserDashBoard';
 import AdminDashBoard from './user/AdminDashBoard';
 import PrivateRoute from './auth/helper/PrivateRoute';
 import AdminRoute from './auth/helper/AdminRoute';
+import CreateCategory from './admin/CreateCategory';
 export default function Routes() {
     return (
         <Router>
@@ -18,6 +19,7 @@ export default function Routes() {
         <Route exact path="/signout" component={SignOut} />
         <PrivateRoute path='/user/dashboard' component={UserDashBoard}/> 
         <AdminRoute path='/admin/dashboard' component={AdminDashBoard}/> 
+        <AdminRoute path='/admin/create/category' component={CreateCategory}/> 
         </Switch>
        </Router>
     )
