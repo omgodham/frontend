@@ -10,7 +10,7 @@ import PrivateRoute from './auth/helper/PrivateRoute';
 import AdminRoute from './auth/helper/AdminRoute';
 import CreateCategory from './admin/CreateCategory';
 import CreateProduct from './admin/CreateProduct';
-
+import ManageProducts from './admin/ManageProducts';
 export default function Routes() {
     return (
         <Router>
@@ -23,6 +23,7 @@ export default function Routes() {
         <AdminRoute path='/admin/dashboard' component={AdminDashBoard}/> 
         <AdminRoute path='/admin/create/category' component={CreateCategory}/> 
         <AdminRoute path='/admin/create/product' component={CreateProduct}/> 
+        <AdminRoute path='/admin/products' component={ManageProducts}/> 
         </Switch>
        </Router>
     )

@@ -44,7 +44,6 @@ export default function CreateProduct({ history }) {
             if (data.error) {
                 setValues({ ...values, error: data.error })
             } else {
-                console.log(data);
                 setValues({ ...values, categories: data, formData: new FormData() })
             }
         })
@@ -117,7 +116,6 @@ export default function CreateProduct({ history }) {
 
     const onSubmit = event => {
         event.preventDefault();
-        console.log(formData);
         setValues({ ...values, error: false, loading: true })
         createProduct(user._id, token, formData) //passing form data to backend
             .then(data => {

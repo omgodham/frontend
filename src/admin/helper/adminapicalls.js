@@ -35,7 +35,6 @@ export const getCategories = () => {
 
 //create product
 export const createProduct = (userId,token,product) => {
-    console.log(product);
     return fetch(`${API}/product/create/${userId}`,{
         method:'POST',
         headers:{
@@ -45,7 +44,7 @@ export const createProduct = (userId,token,product) => {
         body:product
     })
     .then(response =>{ 
-        console.log(response);
+    
         return response.json()
     })
     .catch(err => console.log(err))
@@ -66,7 +65,6 @@ export const getProduct = (productId) => {
         method:'GET'
     })
     .then(response =>{ 
-        console.log(response);
         return response.json()
     })
     .catch(err => console.log(err))
@@ -82,8 +80,7 @@ export const deleteProduct = (userId,token,productId) => {
         }
     })
     .then(response =>{ 
-        console.log(response);
-        return response.json()
+        return response.json();
     })
     .catch(err => console.log(err))
 } 
