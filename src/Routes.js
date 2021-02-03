@@ -11,6 +11,7 @@ import AdminRoute from './auth/helper/AdminRoute';
 import CreateCategory from './admin/CreateCategory';
 import CreateProduct from './admin/CreateProduct';
 import ManageProducts from './admin/ManageProducts';
+import UpdateProduct from './admin/UpdateProduct';
 export default function Routes() {
     return (
         <Router>
@@ -24,6 +25,7 @@ export default function Routes() {
         <AdminRoute path='/admin/create/category' component={CreateCategory}/> 
         <AdminRoute path='/admin/create/product' component={CreateProduct}/> 
         <AdminRoute path='/admin/products' component={ManageProducts}/> 
+        <AdminRoute path='/admin/product/update/:productId' component={UpdateProduct}/> 
         </Switch>
        </Router>
     )

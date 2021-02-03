@@ -22,13 +22,14 @@ export default function ManageProducts() {
             }
         })
     }
+
     const getAllProducts = () =>{
             getProducts().then(
                 data => {
                     if(data.error){
                         console.log(data.error);
                     }else{
-                        console.log(data);
+                        // console.log(data);
                         setProducts(data);
                     }
                 }
@@ -50,7 +51,7 @@ export default function ManageProducts() {
                     </h3>
                     </div>
                     <div className='col-4'>
-                        <Link className='btn btn-success' to='/admin/product/update/productId'>
+                        <Link className='btn btn-success' to={`/admin/product/update/${product._id}`}>
                             Update
                         </Link>
                     </div>
