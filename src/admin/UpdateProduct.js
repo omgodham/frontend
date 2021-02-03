@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { isAuthinticated } from "../auth/helper";
 import Base from "../core/Base";
-import { createProduct, getCategories, getProduct } from "./helper/adminapicalls";
+import { updateProduct, getCategories, getProduct } from "./helper/adminapicalls";
 
 export default function UpdateProduct({ history , match }) {
     const [values, setValues] = useState({
@@ -47,7 +47,7 @@ export default function UpdateProduct({ history , match }) {
             if (data.error) {
                 setValues({ ...values, error: data.error })
             } else {
-                setValues({ categories: data ,formData:new FormData()})
+                setValues({ categories: data ,formData:new FormData()}) //if you pass ...values code fails 
             }
         })
     }
@@ -65,7 +65,7 @@ export default function UpdateProduct({ history , match }) {
                     description: data.description,
                     stock: data.stock,
                     price: data.price,
-                    category:data.category.name
+                    formData : new FormData()
                 })
             }
         })
@@ -116,8 +116,7 @@ export default function UpdateProduct({ history , match }) {
                 </div>
                 <div className="form-group">
                     <select className="form-control" placeholder="category" onChange={handleChange('category')}>
-                    {console.log(category)}
-                    <option value={category}>{category}</option>    
+                    <option value=''>Select</option>   
                         {categories.map((item, index) => {
                             return <option key={index} value={item._id}>{item.name}</option>
                         })}
@@ -144,7 +143,7 @@ export default function UpdateProduct({ history , match }) {
     const onSubmit = event => {
         event.preventDefault();
         setValues({ ...values, error: false, loading: true })
-        createProduct(user._id, token, formData) //passing form data to backend
+        updateProduct(user._id, token,match.params.productId, formData) //passing form data to backend
             .then(data => {
                 if (data.error) {
                     setValues({ ...values, error: data.error })

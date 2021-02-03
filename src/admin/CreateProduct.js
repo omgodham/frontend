@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { isAuthinticated } from "../auth/helper";
 import Base from "../core/Base";
-import { createProduct, getCategories } from "./helper/adminapicalls";
+import { createProduct, getCategories ,updateProduct} from "./helper/adminapicalls";
 
 export default function CreateProduct({ history }) {
     const [values, setValues] = useState({
@@ -117,7 +117,7 @@ export default function CreateProduct({ history }) {
     const onSubmit = event => {
         event.preventDefault();
         setValues({ ...values, error: false, loading: true })
-        createProduct(user._id, token, formData) //passing form data to backend
+        updateProduct(user._id, token, formData) //passing form data to backend
             .then(data => {
                 if (data.error) {
                     setValues({ ...values, error: data.error })
