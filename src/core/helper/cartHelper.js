@@ -11,10 +11,25 @@ let cart = [];
     localStorage.setItem('cart',JSON.stringify(cart));        
 }      
 
-export const getCart = () => {
+
+export const removeProductFromCart = (productId) => {
     let cart = [];
     if(typeof window !== undefined){
-                  cart = JSON.parse(localStorage.getItem('cart'));
+        if(localStorage.getItem('cart')){
+            cart = JSON.parse(localStorage.getItem('cart'));
+        }
     }
-    return cart;
+    console.log(cart);
+    cart = cart.filter( product => {
+        return productId !== product._id
+    });
+    console.log(cart);
+     localStorage.setItem('cart',JSON.stringify(cart));    
+}
+
+export const getCart = () => {
+    if(typeof window !== undefined){
+                 return(JSON.parse(localStorage.getItem('cart')));
+    }
+    
 }

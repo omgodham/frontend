@@ -1,5 +1,5 @@
     import React from 'react'
-import { addProductToCart } from './helper/cartHelper'
+import { addProductToCart ,removeProductFromCart} from './helper/cartHelper'
 import ImageHelper from './helper/ImageHelper'
 
     export default function Card({product, isAddToCart, isRemoveFromCart}) {
@@ -9,8 +9,8 @@ import ImageHelper from './helper/ImageHelper'
                addProductToCart(product);
         }
 
-        const removeFromCart = () => {
-            //
+        const removeFromCart = (productId) => {
+            removeProductFromCart(productId); 
         }
 
         const showAddToCart = () => {
@@ -19,7 +19,7 @@ import ImageHelper from './helper/ImageHelper'
         }
         const showRemoveFromCart = () => {
             return isRemoveFromCart &&
-                <button className='btn btn-block btn-outline-danger mt-2 mb-2' onClick={removeFromCart}>Remove From Cart</button>   
+                <button className='btn btn-block btn-outline-danger mt-2 mb-2' onClick={() => removeFromCart(product._id)}>Remove From Cart</button>   
         }
 
         return (
