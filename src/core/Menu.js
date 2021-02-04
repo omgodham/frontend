@@ -20,6 +20,9 @@ const Menu = ({history}) => {
             <li className='nav-item'>
                 <Link style={currentTab(history, "/")}  className='nav-link'  to="/">Home</Link>
             </li>
+            <li className='nav-item'>
+                <Link style={currentTab(history, "/cart")}  className='nav-link'  to="/cart">Cart</Link>
+            </li>
             {isAuthinticated() && isAuthinticated().user.role === 0 && (
                 <li className='nav-item'>
                 <Link style={currentTab(history,"/dashboard")} className='nav-link'  to='/user/dashboard'>U. Dashboard</Link>
