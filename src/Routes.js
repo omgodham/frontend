@@ -14,11 +14,13 @@ import ManageProducts from './admin/ManageProducts';
 import ManageCategories from './admin/ManageCategories';
 import UpdateProduct from './admin/UpdateProduct';
 import UpdateCategory from './admin/UpdateCategory';
+import Cart from './core/Cart';
 export default function Routes() {
     return (
         <Router>
         <Switch>
         <Route exact path="/" component={Home} /> 
+        <Route exact path="/cart" component={Cart} /> 
         <Route exact path="/signup" component={SignUp} /> 
         <Route exact path="/signin" component={SignIn} /> 
         <Route exact path="/signout" component={SignOut} />
