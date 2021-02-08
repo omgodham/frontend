@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import '../styles.css';
 import Base from './Base';
 import Card from "./Card";
+import Stripe from "./Stripe";
 import { getCart } from './helper/cartHelper';
 export default function Cart() {
   
@@ -30,7 +31,7 @@ const getCartProducts = () =>{
                 return <Card key ={index} product={product} isAddToCart={false} isRemoveFromCart={true} reload={reload} setReload={setReload}/>
             })}
         </div>
-        <div  className='col-6'>These are cart options</div>
+        <div  className='col-6'><Stripe products={cartProducts} reload={reload} setReload={setReload}/></div>
       </div>
     </Base>
     )
