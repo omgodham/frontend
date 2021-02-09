@@ -15,8 +15,7 @@ export const createCategory = (userId,token,category) => {
         body:JSON.stringify(category)
     })
     .then(response =>{ 
-        console.log(response);
-        return response.json()
+         return response.json()
     })
     .catch(err => console.log(err))
 }
