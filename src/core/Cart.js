@@ -1,6 +1,6 @@
 import React, { useState ,useEffect} from 'react'
 import { Redirect } from 'react-router-dom';
-
+import BraintreePayment from './BraintreePayment';
 import '../styles.css';
 import Base from './Base';
 import Card from "./Card";
@@ -30,7 +30,9 @@ const getCartProducts = () =>{
                 return <Card key ={index} product={product} isAddToCart={false} isRemoveFromCart={true} reload={reload} setReload={setReload}/>
             })}
         </div>
-        <div  className='col-6'>These are cart options</div>
+        <div  className='col-6'>
+        <BraintreePayment products={cartProducts} setReload={setReload} reload={reload}/>
+        </div>
       </div>
     </Base>
     )
